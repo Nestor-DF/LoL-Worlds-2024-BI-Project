@@ -1,0 +1,14 @@
+dwh_postgres:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      user: nestor
+      password: 12ab12ab
+      port: 5432
+      dbname: dwh
+      schema: analytics
+      threads: 4
+      sslmode: prefer
+      connect_timeout: 30

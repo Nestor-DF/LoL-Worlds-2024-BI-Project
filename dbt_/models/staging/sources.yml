@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: raw                # Nombre lógico del conjunto de fuentes
+    schema: public              # Esquema real en la BD (ajústalo según lo tuyo)
+    database: dwh            # Tu base de datos (según profiles.yml → dbname)
+    tables:
+      - name: champions_stats      # Nombre real de la tabla en Postgres
+      - name: players_stats
+      - name: players_teams_stats_extended
