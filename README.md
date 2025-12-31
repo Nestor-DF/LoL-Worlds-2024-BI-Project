@@ -67,7 +67,6 @@ For this reason, **Python 3.11** is installed and used inside a virtual environm
 If you have already done this before, you only need to activate the environment and run steps 4 and 6.
 
 ### 1. Install Python 3.11 and dependencies
-
 ```bash
 sudo add-apt-repository ppa:deadsnakes/ppa -y
 sudo apt update
@@ -75,14 +74,12 @@ sudo apt install python3.11 python3.11-venv python3.11-dev build-essential libss
 ```
 
 ### 2. Create and activate the virtual environment
-
 ```bash
 python3.11 -m venv superset-venv
 source superset-venv/bin/activate
 ```
 
 ### 3. Install Superset and required libraries
-
 ```bash
 python -m pip install --upgrade pip setuptools wheel
 pip install apache-superset
@@ -91,14 +88,12 @@ pip install psycopg2-binary
 ```
 
 ### 4. Configure environment variables
-
 ```bash
 export SUPERSET_CONFIG_PATH=$(pwd)/superset_config.py
 export FLASK_APP=superset
 ```
 
 ### 5. Initialize Superset
-
 ```bash
 superset db upgrade
 superset fab create-admin
@@ -106,7 +101,6 @@ superset init
 ```
 
 ### 6. Run Superset
-
 ```bash
 superset run -h 0.0.0.0 -p 8088 --with-threads --reload --debugger
 ```
