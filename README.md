@@ -21,6 +21,25 @@ deactivate
 
 ---
 
+## Cron
+
+Edit crontab:
+
+```bash
+crontab -e
+```
+
+Scheduled task:
+
+```bash
+0 3 * * 1 cd /YOUR_PATH/LoL-Worlds-2024-BI-Project/scripts && ../venv/bin/python load_incremental.py >> logs/cron.log 2>&1
+```
+
+Brief explanation:
+Runs the incremental load script every Monday at 03:00, using the project’s virtual environment and logging output for monitoring and debugging.
+
+---
+
 ## PostgreSQL
 
 In the root of the project:
