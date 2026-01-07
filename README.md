@@ -21,6 +21,41 @@ deactivate
 
 ---
 
+## Environment Setup
+
+Create a `.env` file in the project root with the following variables (examples below):
+You obtain the Airbyte variables after the corresponding installation (See the Airbyte section).
+
+```env
+POSTGRES_USER=nestor
+POSTGRES_PASSWORD=12ab12ab
+POSTGRES_DB=ERP_Database
+POSTGRES_DB2=dwh
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+
+AIRBYTE_CLIENT_ID=5774d0b4-064b-416d-a252-2b8e6fa15e25
+AIRBYTE_CLIENT_SECRET=RcOApHWnvPzLz0UJCNQHhaxQRxycb7qm
+AIRBYTE_WORKSPACE_ID=936bd719-2f6a-46db-88d9-0f79191540e8
+```
+
+Export the variables (required for Dagster):
+
+```bash
+set -a
+source .env
+set +a
+```
+
+Verify the setup:
+
+```bash
+echo $AIRBYTE_CLIENT_ID
+env | grep AIRBYTE
+```
+
+---
+
 ## Cron
 
 Edit crontab:
