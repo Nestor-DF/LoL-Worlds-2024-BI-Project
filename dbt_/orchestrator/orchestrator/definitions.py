@@ -6,17 +6,18 @@ from .assets import jaffle_shop_dbt_assets
 from .project import jaffle_shop_project
 from .schedules import schedules
 
-
 airbyte = AirbyteWorkspace(
-    rest_api_base_url="http://localhost:8000/api/public/v1",
-    configuration_api_base_url="http://localhost:8000/api/v1",
+    rest_api_base_url="http://127.0.0.1:8000/api/public/v1",
+    configuration_api_base_url="http://127.0.0.1:8000/api/v1",
     workspace_id=EnvVar("AIRBYTE_WORKSPACE_ID"),
     client_id=EnvVar("AIRBYTE_CLIENT_ID"),
     client_secret=EnvVar("AIRBYTE_CLIENT_SECRET"),
+    request_timeout=60,
+    request_max_retries=10,
+    request_retry_delay=1.0,
 )
 
 airbyte_assets = build_airbyte_assets_definitions(workspace=airbyte)
-
 
 defs = Definitions(
     assets=[

@@ -1,0 +1,55 @@
+[32m2026-01-08 12:03:04 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - a5bb5819-e4bb-4382-b05a-f9d5baa3d7c0 - 122149 - LOGS_CAPTURED - Started capturing logs in process (pid: 122149).
+[32m2026-01-08 12:03:04 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - a5bb5819-e4bb-4382-b05a-f9d5baa3d7c0 - 122149 - airbyte_postgres_postgres - STEP_START - Started execution of step "airbyte_postgres_postgres".
+/home/usuario/GCCE-2526/venv/lib/python3.12/site-packages/dagster_airbyte/asset_defs.py:1170: BetaWarning: Function `BaseAirbyteWorkspace.sync_and_poll` is currently in beta, and may have breaking changes in minor version releases, with behavior changes in patch releases.
+  yield from airbyte.sync_and_poll(context=context)
+/home/usuario/GCCE-2526/venv/lib/python3.12/site-packages/dagster_airbyte/resources.py:1501: BetaWarning: Class `AirbyteClient` is currently in beta, and may have breaking changes in minor version releases, with behavior changes in patch releases.
+  return AirbyteClient(
+[32m2026-01-08 12:03:09 +0000[0m - dagster - [34mINFO[0m - __ASSET_JOB - a5bb5819-e4bb-4382-b05a-f9d5baa3d7c0 - airbyte_postgres_postgres - Job 23 initialized for connection_id=297c8b44-6069-48fb-9241-31b0b4d7936b.
+[32m2026-01-08 12:07:12 +0000[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - a5bb5819-e4bb-4382-b05a-f9d5baa3d7c0 - airbyte_postgres_postgres - Request to Airbyte API failed for url http://localhost:8000/api/public/v1/jobs/23 with method GET : ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))[0m
+[32m2026-01-08 12:07:12 +0000[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - a5bb5819-e4bb-4382-b05a-f9d5baa3d7c0 - airbyte_postgres_postgres - Request to Airbyte API failed for url http://localhost:8000/api/public/v1/jobs/23 with method DELETE : ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))[0m
+[32m2026-01-08 12:07:13 +0000[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - a5bb5819-e4bb-4382-b05a-f9d5baa3d7c0 - 122149 - airbyte_postgres_postgres - STEP_FAILURE - Execution of step "airbyte_postgres_postgres" failed.
+
+dagster._core.definitions.events.Failure: Max retries (3) exceeded with url: http://localhost:8000/api/public/v1/jobs/23.
+
+Stack Trace:
+  File "/home/usuario/GCCE-2526/venv/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_plan.py", line 247, in dagster_event_sequence_for_step
+    yield from check.generator(step_events)
+  File "/home/usuario/GCCE-2526/venv/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 504, in core_dagster_event_sequence_for_step
+    for user_event in _step_output_error_checked_user_event_sequence(
+  File "/home/usuario/GCCE-2526/venv/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 183, in _step_output_error_checked_user_event_sequence
+    for user_event in user_event_sequence:
+  File "/home/usuario/GCCE-2526/venv/lib/python3.12/site-packages/dagster/_core/execution/plan/execute_step.py", line 88, in _process_asset_results_to_events
+    for user_event in user_event_sequence:
+  File "/home/usuario/GCCE-2526/venv/lib/python3.12/site-packages/dagster/_core/execution/plan/compute.py", line 190, in execute_core_compute
+    for step_output in _yield_compute_results(step_context, inputs, compute_fn, compute_context):
+  File "/home/usuario/GCCE-2526/venv/lib/python3.12/site-packages/dagster/_core/execution/plan/compute.py", line 159, in _yield_compute_results
+    for event in iterate_with_context(
+  File "/home/usuario/GCCE-2526/venv/lib/python3.12/site-packages/dagster/_utils/__init__.py", line 392, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/home/usuario/GCCE-2526/venv/lib/python3.12/site-packages/dagster_airbyte/asset_defs.py", line 1170, in _asset_fn
+    yield from airbyte.sync_and_poll(context=context)
+  File "/home/usuario/GCCE-2526/venv/lib/python3.12/site-packages/dagster_airbyte/resources.py", line 1358, in sync_and_poll
+    airbyte_output = client.sync_and_poll(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/usuario/GCCE-2526/venv/lib/python3.12/site-packages/dagster_airbyte/resources.py", line 1187, in sync_and_poll
+    self.cancel_job(job.id)
+  File "/home/usuario/GCCE-2526/venv/lib/python3.12/site-packages/dagster_airbyte/resources.py", line 1112, in cancel_job
+    return self._single_request(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/usuario/GCCE-2526/venv/lib/python3.12/site-packages/dagster_airbyte/resources.py", line 1024, in _single_request
+    raise Failure(f"Max retries ({self.request_max_retries}) exceeded with url: {url}.")
+
+The above exception occurred during handling of the following exception:
+dagster._core.definitions.events.Failure: Max retries (3) exceeded with url: http://localhost:8000/api/public/v1/jobs/23.
+
+Stack Trace:
+  File "/home/usuario/GCCE-2526/venv/lib/python3.12/site-packages/dagster_airbyte/resources.py", line 1160, in sync_and_poll
+    poll_job_details = self.get_job_details(job.id)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/usuario/GCCE-2526/venv/lib/python3.12/site-packages/dagster_airbyte/resources.py", line 1106, in get_job_details
+    return self._single_request(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/usuario/GCCE-2526/venv/lib/python3.12/site-packages/dagster_airbyte/resources.py", line 1024, in _single_request
+    raise Failure(f"Max retries ({self.request_max_retries}) exceeded with url: {url}.")
+[0m

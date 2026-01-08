@@ -109,6 +109,7 @@ dbt build
 
 ```bash
 cd dbt_/orchestrator/
+export DAGSTER_HOME=$PWD/dagster_home/
 dagster dev
 ```
 
